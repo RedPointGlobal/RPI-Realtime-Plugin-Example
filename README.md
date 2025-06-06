@@ -38,7 +38,7 @@ Examples of both can be found in the example project.
 ### Decision plugins
 These plugins can execute code at different points of the decision flow, they can influence the decison made, modify the result or add extra processing where required.
 
-![Decision Flow](/assets/decision_flow.png)
+![decision_flow](https://github.com/user-attachments/assets/fed74165-cea2-4c8e-a26e-a40edc7bb202)
 
 #### Pre-decision plugins
 Pre-decision plugins execute prior to the decision being made. They can be used to modify the request, add additional data to the request, or perform any other processing that needs to occur before the decision is made.
