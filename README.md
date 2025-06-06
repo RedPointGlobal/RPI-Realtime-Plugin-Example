@@ -142,13 +142,47 @@ The IP to Geolocation plugin can be used to make use of long/lat lookup services
 ## Configuration
 
 ### Plugin Path
-Once the plugin has been compiled, the dll must be made available to the RPI Realtime Container.  
+
+After compiling the plugin, the resulting DLL must be made available to the RPI Realtime container. The Helm chart is configured to automatically mount the corresponding volume but you are responsible for provisioning the underlying storage based on your hosting platform’s procedure and uploading the DLL to that location. Once the storage is provisioned, create a PersistentVolumeClaim (PVC) and reference its name in the [RPI Helm chart](https://github.com/RedPointGlobal/redpoint-rpi) ```values.yaml``` file as shown below
+
+```
+storage:
+  persistentVolumeClaims:
+    Plugins:
+      enabled: true
+      claimName: realtimeplugins
+      mountPath: /app/plugins
+```
+
 To do this, a file volume can mounted onto the container. The location of the folder can then be configured using the following environment variable.  
 "RealtimeAPIConfiguration__AppSettings__PluginAssemblyPath": "/app/myplugins"  
 
 ### Application Settings
 
-The plugins are configured using the ```values.yaml``` file located in our [RPI Helm Chart](https://github.com/RedPointGlobal/redpoint-rpi).
+The plugins are configured using the ```values.yaml``` file located in our [RPI Helm Chart](https://github.com/RedPointGlobal/redpoint-rpi). This is located under the ```realtimeapi``` section
 
+```
+realtimeapi:
+  plugins:
+    
+```
 
+If the configuration options provided in the ```values.yaml``` are not sufficient for your use case, you can set additional environment variables by using a tool such as [Kustomize](https://kustomize.io/) to patch the Helm chart and extend the deployment as needed. Any patched environment variables must follow the naming convention below, which aligns with the structure expected by the application.
+
+```
+RealtimeAPIConfiguration__Plugins__0__Name=Pre-Decision Example
+RealtimeAPIConfiguration__Plugins__0__Factory__Assembly=RedPoint.Realtime.Example.Plugins
+RealtimeAPIConfiguration__Plugins__0__Factory__Type=RealtimeExamplePlugin.Decisions.PreDecisionPluginFactory
+RealtimeAPIConfiguration__Plugins__0__Type=Predecision
+RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param
+RealtimeAPIConfiguration__Plugins__0__Settings__0__Value=my-custom-parameter
+
+All plugin types can be configured with a collection of Settings. This allows for custom configuration values to be supplied to the plugin.
+Settings are a collection of Key/Value pairs.
+If a setting requires a collection of values, these can be supplied as per the example below.
+
+RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param
+RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__0=my-custom-parameter-1
+RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__1=my-custom-parameter-2
+```
 
