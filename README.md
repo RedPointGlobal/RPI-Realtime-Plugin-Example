@@ -176,11 +176,13 @@ RealtimeAPIConfiguration__Plugins__0__Factory__Type=RealtimeExamplePlugin.Decisi
 RealtimeAPIConfiguration__Plugins__0__Type=Predecision
 RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param
 RealtimeAPIConfiguration__Plugins__0__Settings__0__Value=my-custom-parameter
+```
 
 All plugin types can be configured with a collection of Settings. This allows for custom configuration values to be supplied to the plugin.
 Settings are a collection of Key/Value pairs.
 If a setting requires a collection of values, these can be supplied as per the example below.
 
+```
 RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param
 RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__0=my-custom-parameter-1
 RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__1=my-custom-parameter-2
