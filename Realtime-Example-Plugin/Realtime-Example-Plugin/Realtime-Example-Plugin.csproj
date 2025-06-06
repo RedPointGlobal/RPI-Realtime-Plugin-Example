@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>RedPoint.Realtime.Example.Plugins</AssemblyName>
+    <RootNamespace>RealtimeExamplePlugin</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Platforms>x64</Platforms>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RedPoint.Resonance.Web.Shared">
+      <HintPath>..\..\Dependencies\RedPoint.Resonance.Web.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="RedPoint.Shared.Configuration">
+      <HintPath>..\..\Dependencies\RedPoint.Shared.Configuration.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
