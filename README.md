@@ -30,8 +30,7 @@ All plugins except the Geolocation plugins require two classes
 
 Geolocation plugins only require a plugin class.
 
-Once the plugin is compliled, the dll can be mounted on the realtime containers. Any configuration settings are set using either appsettings.overrides.json files or more commonly environment variables. 
-Examples of both can be found in the example project.
+Once the plugin is compliled, the dll can be mounted on the realtime containers. Any configuration settings are defined in the ```values.yaml``` located in our [RPI Helm Chart](https://github.com/RedPointGlobal/redpoint-rpi) 
 
 ## Plugin Types
 
@@ -149,56 +148,7 @@ To do this, a file volume can mounted onto the container. The location of the fo
 
 ### Application Settings
 
-The plugins are cofigured by either using an appsettings.override.json file mounted on to the RPI Realtime container, or more commonly using environment variables.  
-Example configuration is available in the example project.   
-The environment variable names can be worked from the appsettings json file. Each level of in the JSON is delimited by __  
-Positions in arrays are based on a zero index.  
+The plugins are configured using the ```values.yaml``` file located in our [RPI Helm Chart](https://github.com/RedPointGlobal/redpoint-rpi).
 
-e.g. 
 
-The following json can be converted to env vars
-
-*appsettings*
-
-``{  
-  "RealtimeAPIConfiguration": {  
-    "Plugins": [  
-      {  
-        "Name": "Pre-Decision Example",  
-        "Factory": {  
-          "Assembly": "RedPoint.Realtime.Example.Plugins",  
-          "Type": "RealtimeExamplePlugin.Decisions.PreDecisionPluginFactory",  
-          "ApiContentFilterOperator": "Include",  
-          "ApiContentFilter": [ "apply-plugin" ]  
-        },  
-        "Type": {  
-          "Name": "Predecision"  
-        },  
-        "Settings": [  
-          {  
-            "Key": "Param",  
-            "Value": "my-custom-parameter"  
-          }  
-        ]  
-      },  
-    ]  
-  }  
-}``  
-
-*env vars*
-
-RealtimeAPIConfiguration__Plugins__0__Name=Pre-Decision Example  
-RealtimeAPIConfiguration__Plugins__0__Factory__Assembly=RedPoint.Realtime.Example.Plugins  
-RealtimeAPIConfiguration__Plugins__0__Factory__Type=RealtimeExamplePlugin.Decisions.PreDecisionPluginFactory  
-RealtimeAPIConfiguration__Plugins__0__Type=Predecision  
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param  
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Value=my-custom-parameter  
-
-All plugin types can be configured with a collection of Settings. This allows for custom configuration values to be supplied to the plugin.  
-Settings are a collection of Key/Value pairs.  
-If a setting requires a collection of values, these can be supplied as per the example below.
-
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param  
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__0=my-custom-parameter-1  
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__1=my-custom-parameter-2  
 
