@@ -160,28 +160,22 @@ The plugins are configured using the ```values.yaml``` file located in our [RPI 
 
 ```
 realtimeapi:
-  plugins:
-    
+  customPlugins:
+    enabled: true
+    settings.
+        list:
+          - name: my_plugin1
+            factory:
+              assembly: my_plugin1_assembly
+              type: Plugin1_type
+            type:
+              name: my_plugin1_type_name
+              apiContextFilters:
+                - my_filter1
+              apiContentFilterOperator: Include
+            settings:
+              - key: key1
+                value: value1
+              - key: key2
+                value: value2
 ```
-
-If the configuration options provided in the ```values.yaml``` are not sufficient for your use case, you can set additional environment variables by using a tool such as [Kustomize](https://kustomize.io/) to patch the Helm chart and extend the deployment as needed. Any patched environment variables must follow the naming convention below, which aligns with the structure expected by the application.
-
-```
-RealtimeAPIConfiguration__Plugins__0__Name=Pre-Decision Example
-RealtimeAPIConfiguration__Plugins__0__Factory__Assembly=RedPoint.Realtime.Example.Plugins
-RealtimeAPIConfiguration__Plugins__0__Factory__Type=RealtimeExamplePlugin.Decisions.PreDecisionPluginFactory
-RealtimeAPIConfiguration__Plugins__0__Type=Predecision
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Value=my-custom-parameter
-```
-
-All plugin types can be configured with a collection of Settings. This allows for custom configuration values to be supplied to the plugin.
-Settings are a collection of Key/Value pairs.
-If a setting requires a collection of values, these can be supplied as per the example below.
-
-```
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Key=Param
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__0=my-custom-parameter-1
-RealtimeAPIConfiguration__Plugins__0__Settings__0__Values__1=my-custom-parameter-2
-```
-
