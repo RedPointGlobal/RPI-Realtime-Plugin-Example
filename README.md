@@ -164,18 +164,18 @@ realtimeapi:
     enabled: true
     settings.
         list:
-          - name: my_plugin1
-            factory:
-              assembly: my_plugin1_assembly
-              type: Plugin1_type
-            type:
-              name: my_plugin1_type_name
-              apiContextFilters:
-                - my_filter1
-              apiContentFilterOperator: Include
-            settings:
-              - key: key1
-                value: value1
-              - key: key2
-                value: value2
+        - name: my_plugin1
+          factory:
+            assembly: my_plugin1_assembly
+            type: Plugin1_type
+          type:
+            name: my_plugin1_type_name
+            apiContextFilters:
+              - my_filter1
+            apiContentFilterOperator: Include
+          settings:
+            - key: key1
+              value: value1
+            - key: key2
+              value: value2
 ```
