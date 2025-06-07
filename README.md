@@ -143,7 +143,7 @@ The IP to Geolocation plugin can be used to make use of long/lat lookup services
 
 ### Plugin Path
 
-After compiling the plugin, the resulting DLL must be made available to the RPI Realtime container. The Helm chart is configured to automatically mount the corresponding volume and set the location of the plugins but you are responsible for provisioning the underlying storage based on your hosting platform’s procedure and uploading the DLL to that location. Once the storage is provisioned, create a PersistentVolumeClaim (PVC) and reference its name in the [RPI Helm chart](https://github.com/RedPointGlobal/redpoint-rpi) ```values.yaml``` file as shown below
+After compiling the plugin, the resulting DLL must be made available to the RPI Realtime container. The Helm chart is configured to automatically mount the corresponding volume and set the location of the plugins but you are responsible for provisioning the underlying storage based on your hosting platform’s procedure and uploading the DLL to that location. For instance in Azure, create an azure file share, upload the DDL to the share. Once that is done, create a PersistentVolume (PV) and PersistentVolumeClaim (PVC) and reference its name in the [RPI Helm chart](https://github.com/RedPointGlobal/redpoint-rpi) ```values.yaml``` file as shown below
 
 ```
 storage:
