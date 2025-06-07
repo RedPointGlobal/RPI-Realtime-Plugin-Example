@@ -178,4 +178,18 @@ realtimeapi:
               value: value1
             - key: key2
               value: value2
+        - name: my_plugin2
+          factory:
+            assembly: my_plugin2_assembly
+            type: Plugin2_type
+          type:
+            name: my_plugin2_type_name
+            apiContextFilters:
+              - my_filter1
+            apiContentFilterOperator: Include
+          settings:
+            - key: key1
+              value: value1
+            - key: key2
+              value: value2
 ```
