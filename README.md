@@ -6,7 +6,7 @@ RPI Realtime consists of a suite of functionality that allows you to make decisi
 Typically, RPI Realtime is used to make such decisions in the context of a web page (either an RPI landing page, or an externally-hosted web page), with the most appropriate content being rendered to a page visitor. 
 However, its capabilities extend beyond this use case, with the RPI Realtime API (Application Programmer's Interface) facilitating leverage of its capabilities in a range of contexts e.g. Internet of Things (IoT) devices and inbound call centers.
 
-Developers can enhace the functionality of RPI Realtime by creating plugins that extend the capabilities of the RPI Realtime API. There are a number of different types of plugins that can be created, these are detailed below.
+Developers can enhance the functionality of RPI Realtime by creating plugins that extend the capabilities of the RPI Realtime API. There are a number of different types of plugins that can be created, these are detailed below.
 
 ## Table of Contents
 - [Getting Started ](#getting-started)
@@ -44,7 +44,7 @@ Pre-decision plugins execute prior to the decision being made. They can be used 
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/smart-assets/results |
+| Endpoint | [/api/v2/smart-assets/results](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/smart-assets/results)  |
 | Factory Base Class / Interface | RedPoint.Resonance.Web.Shared.Plugins.FilterableRealtimePluginFactoryBase |
 | Plugin Interface | RedPoint.Resonance.Web.Shared.Plugins.IPredecisionPlugin |
 | Inputs     | Decision Request Details, Visitor Profile |
@@ -57,7 +57,7 @@ Post-decision plugins execute immediately after a decision is made. They can be 
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/smart-assets/results |
+| Endpoint | [/api/v2/smart-assets/results](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/smart-assets/results)  |
 | Factory Base Class / Interface | RedPoint.Resonance.Web.Shared.Plugins.IRealtimePluginFactory |
 | Plugin Interface | RedPoint.Resonance.Web.Shared.Plugins.IDecisionContentPlugin |
 | Inputs     | Decision Result, Visitor Profile |
@@ -69,7 +69,7 @@ Smart Asset plugins execute once all the decision responses associated with a Sm
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/smart-assets/results |
+| Endpoint | [/api/v2/smart-assets/results](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/smart-assets/results)  |
 | Factory Base Class / Interface | RedPoint.Resonance.Web.Shared.Plugins.FilterableRealtimePluginFactoryBase |
 | Plugin Interface | RedPoint.Resonance.Web.Shared.Plugins.ISmartAssetResultsPlugin |
 | Inputs     | Request Details, Collection of Decision Results, Visitor Profile |
@@ -81,7 +81,7 @@ Event plugins can be used to modify or process any realtime event e.g. Page Visi
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/events |
+| Endpoint | [/api/v2/events](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/events)  |
 | Factory Base Class / Interface | RedPoint.Resonance.Web.Shared.Plugins.FilterableRealtimePluginFactoryBase |
 | Plugin Interface | RedPoint.Resonance.Web.Shared.Plugins.IEventPlugin |
 | Inputs     | Realtime Event |
@@ -93,7 +93,7 @@ Form Plugins can be used to modify or process any web form submission data passe
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/form-data |
+| Endpoint | [/api/v2/form-data](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/form-data)  |
 | Factory Base Class / Interface | RedPoint.Resonance.Web.Shared.Plugins.IFormProcessingPluginFactory |
 | Plugin Interface | RedPoint.Resonance.Web.Shared.Plugins.IFormProcessingPlugin |
 | Inputs     | Form Data |
@@ -105,7 +105,7 @@ Visitor Profile plugins can be used to modify or process the visitor profile whe
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/cache/visit |
+| Endpoint | [/api/v2/cache/visit](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/cache/visit)  |
 | Factory Base Class / Interface | RedPoint.Resonance.Web.Shared.Plugins.FilterableRealtimePluginFactoryBase |
 | Plugin Interface | RedPoint.Resonance.Web.Shared.Plugins.IVisitorCachePlugin |
 | Inputs     | Visitor Profile, Registration Request Details |
@@ -120,7 +120,7 @@ The gelocation plugin can be used to lookup address information, weather observa
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/smart-assets/results |
+| Endpoint | [/api/v2/smart-assets/results](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/smart-assets/results)  |
 | Factory Base Class / Interface | N/A |
 | Plugin Interface | IGeolocationProvider |
 | Inputs     | Long/Lat or Search String |
@@ -132,7 +132,7 @@ The IP to Geolocation plugin can be used to make use of long/lat lookup services
 
 | Plugin Info |  |
 |----------------------------------------------------------------------------------------|--|
-| Endpoint | /api/v2/smart-assets/results |
+| Endpoint | [/api/v2/smart-assets/results](https://cdn.redpointglobal.com/api-docs/realtimeapidoc.html?scrollToPath=post-/api/v2/smart-assets/results)  |
 | Factory Base Class / Interface | N/A |
 | Plugin Interface | IGeoIPLookupPlugin |
 | Inputs     | IP Address |
