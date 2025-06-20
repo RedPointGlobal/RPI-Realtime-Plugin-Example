@@ -1,7 +1,4 @@
 ![rp_cdp_logo](https://github.com/RedPointGlobal/redpoint-rpi/assets/42842390/432d779f-de4e-4936-80fe-3caa4d732603)
-![image](https://github.com/user-attachments/assets/56a8bfe0-9e2e-4c69-9428-a1488ae0e6a5)
-
-
 ## Redpoint Interaction (RPI) | Realtime Plugins
 
 RPI Realtime consists of a suite of functionality that allows you to make decisions about the most appropriate content to be displayed to a person of interest in real time.
