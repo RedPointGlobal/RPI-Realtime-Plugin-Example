@@ -7,7 +7,7 @@ namespace RealtimeExamplePlugin.Forms;
 /// <summary>
 /// Factory class to initialize a new instance of a Form plugin
 /// Form plugins allowing for the updating and custom processing of realtime form data
-/// In this example, the coniguration values for this plugin are added to any form data received by realtime
+/// In this example, the configuration values for this plugin are added to any form data received by realtime
 /// </summary>
 public class FormProcessingFactory : IFormProcessingPluginFactory
 {
@@ -19,7 +19,7 @@ public class FormProcessingFactory : IFormProcessingPluginFactory
     /// <summary>
     /// Custom property to store extra form values
     /// </summary>
-    public List<KeyValueConfig> FormParameters { get; set; } = new();
+    public List<KeyValueConfig> FormParameters { get; set; } = [];
 
 
     /// <summary>
@@ -30,7 +30,7 @@ public class FormProcessingFactory : IFormProcessingPluginFactory
     public void Initialize(string name, List<KeyValueConfig> settings)
     {
         Name = name;
-        FormParameters = new List<KeyValueConfig>(settings);
+        FormParameters = [.. settings];
     }
 
     /// <summary>
@@ -50,13 +50,13 @@ public class FormProcessingPlugin : IFormProcessingPlugin
     /// <summary>
     /// Custom property to store extra form values
     /// </summary>
-    public List<KeyValueConfig> FormParameters { get; set; } = new();
+    public List<KeyValueConfig> FormParameters { get; set; } = [];
 
     /// <summary>
-    /// Modifiy or apply custom processing on the form data
+    /// Modify or apply custom processing on the form data
     /// </summary>
     /// <param name="formData"></param>
-    public void Execute(RPIFormData formData)
+    public Task ExecuteAsync(RPIFormData formData)
     {
         if (FormParameters != null)
         {
@@ -65,5 +65,6 @@ public class FormProcessingPlugin : IFormProcessingPlugin
                 formData.Items.Add(new RPIFormDataItem { Key = item.Key, Value = item.Value, IsCustomField = true });
             }
         }
+        return Task.CompletedTask;  
     }
 }

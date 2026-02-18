@@ -1,5 +1,6 @@
 ﻿using RedPoint.Resonance.Web.Shared;
 using RedPoint.Resonance.Web.Shared.ConfigurationModels;
+using RedPoint.Resonance.Web.Shared.Logging;
 using RedPoint.Resonance.Web.Shared.Plugins;
 using RedPoint.Resonance.Web.Shared.RealtimeServiceModels;
 using RedPoint.Shared.Configuration.Core;
@@ -8,7 +9,7 @@ namespace RealtimeExamplePlugin.Decisions;
 
 /// <summary>
 /// Factory class to initialize a new instance of a smart asset plugin
-/// Smart asset plugins allowing for the updating and processing of all decision results releated to a smart asset request.
+/// Smart asset plugins allowing for the updating and processing of all decision results related to a smart asset request.
 /// In this example, the visitor profile is updated with a counter and the results are augmented with extra information.
 /// </summary>
 public class SmartAssetPluginFactory : FilterableRealtimePluginFactoryBase
@@ -58,10 +59,10 @@ public class SmartAssetPlugin : ISmartAssetResultsPlugin
     /// <param name="request"></param>
     /// <param name="results"></param>
     /// <returns></returns>
-    public List<DecisionResult> Execute(string visitorID, WebVisitor visitorDetails, SmartAssetRequest request, List<DecisionResult> results)
+    public Task<List<DecisionResult>> ExecuteAsync(string visitorID, WebVisitor visitorDetails, SmartAssetRequest request, List<DecisionResult> results)
     {
         //Write a log message
-        TraceLogHelper.SendTraceInformation($"Running my smart asset plugin for visitor {visitorID}");
+        TraceLogHelper.SendTraceInformation($"Running my smart asset plugin for visitor {visitorID}", category: RealtimeLogCategory.Plugin);
 
         //Update the results
         for (int i = 0; i < results.Count; i++)
@@ -84,6 +85,6 @@ public class SmartAssetPlugin : ISmartAssetResultsPlugin
             }
         }
 
-        return results;
+        return Task.FromResult(results);
     }
 }

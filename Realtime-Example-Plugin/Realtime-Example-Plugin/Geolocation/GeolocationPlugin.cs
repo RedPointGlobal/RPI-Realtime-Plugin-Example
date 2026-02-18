@@ -25,10 +25,10 @@ public class GeolocationPlugin : IGeolocationProvider
     /// <param name="geoDetails"></param>
     /// <param name="unit"></param>
     /// <returns></returns>
-    public WebWeather GetCurrentObservations(WebGeolocation geoDetails, string unit)
+    public Task<WebWeather> GetCurrentObservationsAsync(WebGeolocation geoDetails, string unit)
     {
         //Always sunny
-        return new WebWeather
+        return Task.FromResult(new WebWeather
         {
             ForecastDate = DateTime.Now,
             ForecastIndex = 0,
@@ -44,7 +44,7 @@ public class GeolocationPlugin : IGeolocationProvider
             Units = unit,
             UVIndex = 5,
             WindSpeed = 0
-        };
+        });
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class GeolocationPlugin : IGeolocationProvider
     /// <param name="distSearch"></param>
     /// <param name="unit"></param>
     /// <exception cref="NotImplementedException"></exception>
-    public void GetDistances(WebGeolocation geoDetails, GeoDistances distSearch, string unit)
+    public Task GetDistancesAsync(WebGeolocation geoDetails, GeoDistances distSearch, string unit)
     {
         throw new NotImplementedException();
     }
@@ -67,9 +67,9 @@ public class GeolocationPlugin : IGeolocationProvider
     /// <param name="points"></param>
     /// <param name="searchBuffer"></param>
     /// <returns></returns>
-    public bool GetGeofenceDetails(WebGeolocation geoDetails, string geofenceOp, XElement points, int searchBuffer)
+    public Task<bool> GetGeofenceDetailsAsync(WebGeolocation geoDetails, string geofenceOp, XElement points, int searchBuffer)
     {
-        return true;
+        return Task.FromResult(true);
     }
 
     /// <summary>
@@ -79,10 +79,10 @@ public class GeolocationPlugin : IGeolocationProvider
     /// <param name="unit"></param>
     /// <param name="forecastIndex"></param>
     /// <returns></returns>
-    public WebWeather GetWeatherForecast(WebGeolocation geoDetails, string unit, int forecastIndex)
+    public Task<WebWeather> GetWeatherForecastAsync(WebGeolocation geoDetails, string unit, int forecastIndex)
     {
         //Always Sunny
-        return new WebWeather
+        return Task.FromResult(new WebWeather
         {
             ForecastDate = DateTime.Now,
             ForecastIndex = forecastIndex,
@@ -98,7 +98,7 @@ public class GeolocationPlugin : IGeolocationProvider
             Units = unit,
             UVIndex = 5,
             WindSpeed = 0
-        };
+        });
     }
 
     /// <summary>
@@ -106,7 +106,7 @@ public class GeolocationPlugin : IGeolocationProvider
     /// </summary>
     /// <param name="geoDetails"></param>
     /// <returns></returns>
-    public bool LoadDetails(WebGeolocation geoDetails)
+    public Task<bool> LoadDetailsAsync(WebGeolocation geoDetails)
     {
         //Always Wellesley
         geoDetails.Country = "USA";
@@ -115,12 +115,12 @@ public class GeolocationPlugin : IGeolocationProvider
         geoDetails.PostalCode = "MA";
         geoDetails.Longitude = "42.299941";
         geoDetails.Latitude = "-71.288318";
-        return true;
+        return Task.FromResult(true);
     }
 
 
 
-    public bool SetCoordinatesFromSearchString(WebGeolocation geoDetails)
+    public Task<bool> SetCoordinatesFromSearchStringAsync(WebGeolocation geoDetails)
     {
         //Always Wellesley
         geoDetails.Country = "USA";
@@ -129,6 +129,6 @@ public class GeolocationPlugin : IGeolocationProvider
         geoDetails.PostalCode = "MA";
         geoDetails.Longitude = "42.299941";
         geoDetails.Latitude = "-71.288318";
-        return true;
-    }
+        return Task.FromResult(true);
+    }    
 }

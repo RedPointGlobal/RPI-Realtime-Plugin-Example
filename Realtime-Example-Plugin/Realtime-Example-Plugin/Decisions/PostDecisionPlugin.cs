@@ -1,5 +1,6 @@
 ﻿using RedPoint.Resonance.Web.Shared;
 using RedPoint.Resonance.Web.Shared.ConfigurationModels;
+using RedPoint.Resonance.Web.Shared.Logging;
 using RedPoint.Resonance.Web.Shared.Plugins;
 using RedPoint.Shared.Configuration.Core;
 
@@ -8,8 +9,8 @@ namespace RealtimeExamplePlugin.Decisions;
 /// <summary>
 /// Factory class to initialize a new instance of a post decision plugin
 /// Post decision plugins allowing for the updating and custom processing of realtime decision result
-/// The selection of a post decision plugin is done in the RPI Client when configuraing the Smart Asset
-/// In this example, the decision result is updated based on configuraiton values
+/// The selection of a post decision plugin is done in the RPI Client when configuring the Smart Asset
+/// In this example, the decision result is updated based on configuration values
 /// </summary>
 public class PostDecisionFactory : IRealtimePluginFactory
 {
@@ -69,9 +70,9 @@ public class PostDecisionPlugin : IDecisionContentPlugin
     /// Execute the plugin logic
     /// </summary>
     /// <param name="visitorID">Visitor ID</param>
-    /// <param name="visitorDetails">Vistitor Details</param>
+    /// <param name="visitorDetails">Visitor Details</param>
     /// <param name="result">Content result</param>
-    public DecisionResult Execute(string visitorID, WebVisitor visitorDetails, DecisionResult result)
+    public async Task<DecisionResult> ExecuteAsync(string visitorID, WebVisitor visitorDetails, DecisionResult result)
     {
         try
         {
@@ -92,8 +93,8 @@ public class PostDecisionPlugin : IDecisionContentPlugin
             else if (!string.IsNullOrWhiteSpace(result.ContentPath))
             {
                 using var httpClient = new HttpClient();
-                using var response = httpClient.GetAsync(result.ContentPath).Result;
-                contentString = response.Content.ReadAsStringAsync().Result;
+                using var response = await httpClient.GetAsync(result.ContentPath).ConfigureAwait(true);
+                contentString = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
             }
             else
             {
@@ -118,7 +119,7 @@ public class PostDecisionPlugin : IDecisionContentPlugin
         }
         catch (Exception ex)
         {
-            TraceLogHelper.SendTraceError(ex, @"Error executing plugin");
+            TraceLogHelper.SendTraceError(ex, @"Error executing plugin", category: RealtimeLogCategory.Plugin);
             return result;
         }
     }

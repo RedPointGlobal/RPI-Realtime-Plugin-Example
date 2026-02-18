@@ -8,7 +8,7 @@ namespace RealtimeExamplePlugin.Decisions;
 /// <summary>
 /// Factory class to initialize a new instance of a pre-decision plugin
 /// Pre-decision plugins allowing for the updating and processing of the visitor profile before it is used for decision making
-/// In this example, the visitor profile is updated based on a configuraiton value
+/// In this example, the visitor profile is updated based on a configuration value
 /// </summary>
 public class PreDecisionPluginFactory : FilterableRealtimePluginFactoryBase
 {
@@ -58,8 +58,9 @@ public class PreDecisionPlugin : IPredecisionPlugin
     /// <param name="contentID"></param>
     /// <param name="visitor"></param>
     /// <param name="apiContext"></param>
-    public void Execute(string visitorID, string decisionContext, string decisionSlotName, string contentID, WebVisitor visitor, string apiContext)
+    public Task ExecuteAsync(string visitorID, string decisionContext, string decisionSlotName, string contentID, WebVisitor visitor, string apiContext)
     {
         visitor.SetValue(ParameterName, apiContext, false);
+        return Task.CompletedTask;
     }
 }

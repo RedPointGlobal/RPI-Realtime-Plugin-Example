@@ -54,8 +54,9 @@ public class VisitorCachePlugin : IVisitorCachePlugin
     /// <param name="contentID"></param>
     /// <param name="visitor"></param>
     /// <param name="apiContext"></param>
-    public void Execute(string visitorID, WebVisitor visitor, VisitorPageRegistration details, bool isVisitRegistration)
+    public Task ExecuteAsync(string visitorID, WebVisitor visitor, VisitorPageRegistration details, bool isVisitRegistration)
     {
         visitor.SetValue("3539924d-a6aa-45dc-b692-6d30efa95811", ParameterName, $"{DateTime.Now:dddd hh:mmtt}", true);
+        return Task.CompletedTask;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using RedPoint.Resonance.Web.Shared;
+using RedPoint.Resonance.Web.Shared.Logging;
 using RedPoint.Resonance.Web.Shared.Plugins;
 using RedPoint.Resonance.Web.Shared.RealtimeServiceModels;
 using RedPoint.Shared.Configuration.Core;
@@ -41,8 +42,9 @@ public class EventPlugin : IEventPlugin
     /// The Execute call allows for updating and processing of the realtime event object.
     /// </summary>
     /// <param name="realtimeEvent"></param>
-    public void Execute(RealtimeEvent realtimeEvent)
+    public Task ExecuteAsync(RealtimeEvent realtimeEvent)
     {
-        TraceLogHelper.SendTraceInformation($"*** EVENT PLUGIN ***   Visitor ID: {realtimeEvent.VisitorID} - Event: {realtimeEvent.EventName}");
+        TraceLogHelper.SendTraceInformation($"*** EVENT PLUGIN ***   Visitor ID: {realtimeEvent.VisitorID} - Event: {realtimeEvent.EventName}", category: RealtimeLogCategory.Plugin);
+        return Task.CompletedTask;
     }
 }

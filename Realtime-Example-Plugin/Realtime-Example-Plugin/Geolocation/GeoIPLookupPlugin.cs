@@ -1,6 +1,7 @@
 ﻿using RedPoint.Resonance.Web.Shared;
 using RedPoint.Resonance.Web.Shared.ConfigurationModels;
 using RedPoint.Resonance.Web.Shared.Decisions.Geolocation;
+using RedPoint.Resonance.Web.Shared.Logging;
 using RedPoint.Shared.Configuration.Core;
 
 namespace RealtimeExamplePlugin.Geolocation;
@@ -26,11 +27,11 @@ public class GeoIPLookupPlugin : IGeoIPLookupPlugin
     /// </summary>
     /// <param name="IPAddress"></param>
     /// <returns></returns>
-    public WebGeolocation GetLocation(string IPAddress)
+    public Task<WebGeolocation> GetLocationAsync(string IPAddress)
     {
         try
         {
-            return new WebGeolocation()
+            return Task.FromResult(new WebGeolocation()
             {
                 CoordinatesUpdated = DateTime.Now,
                 Country = "country_name",
@@ -42,12 +43,12 @@ public class GeoIPLookupPlugin : IGeoIPLookupPlugin
                 AdminDistrict4 = "continent_code",
                 Longitude = "longitude",
                 Latitude = "latitude"
-            };
+            });
 
         }
         catch (Exception ex)
         {
-            TraceLogHelper.SendTraceError(ex, $"Error looking up IP Address {IPAddress}");
+            TraceLogHelper.SendTraceError(ex, $"Error looking up IP Address {IPAddress}", category: RealtimeLogCategory.Plugin);
             throw;
         }
     }
